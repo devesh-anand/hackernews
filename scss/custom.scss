@@ -1,0 +1,12 @@
+$body-bg: rgb(27, 27, 27);
+$bg-secondary: #E3E2E2;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.main-card {
+    margin-top: 16px;
+}
+
+.col-3, .col-8 {
+    background-color: #E3E2E2;
+}
