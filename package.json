@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@popperjs/core": "^2.9.2",
-    "bootstrap": "^5.0.2"
+    "bootstrap": "^5.0.2",
+    "bootstrap-icons": "^1.5.0"
   },
   "devDependencies": {
     "sass": "^1.36.0"
@@ -13,7 +14,7 @@
   "scripts": {
     "dev": "parcel ./src/index.html",
     "prebuild": "npx rimraf build",
-    "build": "npm install parcel && parcel build --public-url ./ ./src/index.html --experimental-scope-hoisting --out-dir build"
+    "build": "npm install parcel && parcel build --public-url ./ ./src/index.html --out-dir build"
   },
   "keywords": [],
   "author": "",
