@@ -1,11 +1,11 @@
 import React from "react";
 
-const news = () => {
+const news = ({ author, website, title, link, upvotes, comments, time }) => {
    return (
       <div class="container-sm bg-light flex-row main-card p-3">
          <div class="content px-2 py-1 mx-1 d-flex flex-row no-wrap">
-            <div class="col-sm-3 pe-4 extras">by andrelaszlo</div>
-            <div class="col-sm extras">(emilydamstra.com)</div>
+            <div class="col-sm-3 pe-4 extras">by {author}</div>
+            <div class="col-sm extras">({website})</div>
          </div>
 
          <div class="content main-heading px-2 mx-1 d-flex">
