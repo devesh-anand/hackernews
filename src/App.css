@@ -1,35 +1,51 @@
 :root {
-   --body-bg: rgb(27, 27, 27);
-   --bg-secondary: #e3e2e2;
+  --body-bg: rgb(27, 27, 27);
+  --bg-secondary: #e3e2e2;
 }
 
 @import "/node_modules/bootstrap/dist/css/bootstrap";
 /* @import "bootstrap-icons/font/bootstrap-icons.css"; */
 
 body {
-   background-color: #1b1b1b;
+  background-color: #1b1b1b;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .main-card {
-   margin-top: 16px;
+  margin-top: 16px;
 }
 
 .content {
-   background-color: #e3e2e2;
+  background-color: #e3e2e2;
+}
+
+.content svg {
+  color: #1b1b1b;
 }
 
 .extras {
-   color: #6d6d6d;
+  color: #6d6d6d;
 }
 
 .main-heading {
-   font-size: 24px;
-   font-weight: bold;
-   line-height: 1.25;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #555555;
+  transition: ease-in-out 250ms;
+}
+
+.main-heading:hover {
+  color: #1b1b1b;
+  transition: ease-in-out 250ms;
 }
 
 @media (max-width: 600px) {
-   .main-heading {
-      font-size: 20px;
-   }
+  .main-heading {
+    font-size: 20px;
+  }
 }

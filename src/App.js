@@ -27,7 +27,18 @@ function App() {
       const data = await response.json();
       setNews((prev) => [...prev, data]);
     });
+    // console.log(news);
   }, [stories]);
+
+  // useEffect(() => {
+  //   console.log(news);
+  // }, [news]);
+
+  const baseur = (url) => {
+    let finaluri = new URL(url).host;
+    console.log(finaluri);
+    return (finaluri);
+  }
 
   return (
     <div className="App">
@@ -40,6 +51,9 @@ function App() {
               author={story.by}
               title={story.title}
               url={story.url}
+              // baseurl={() => {return (new URL(story.url).host)}}
+              score={story.score != null ? story.score : 0}
+              comments={story.descendants != null ? story.descendants : 0}
             />
           ))}
       </div>
