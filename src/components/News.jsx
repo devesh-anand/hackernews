@@ -1,7 +1,8 @@
 import React from "react";
 import { FaArrowUp, FaRegComments, FaRegClock } from "react-icons/fa";
+import moment from "moment";
 
-const news = ({ author, title, url, score, comments, baseurl }) => {
+const news = ({ author, title, url, score, comments, baseurl, time }) => {
   return (
     <div className="container-sm bg-light flex-row main-card p-3">
       <div className="content px-2 py-1 mx-1 d-flex flex-row no-wrap">
@@ -27,7 +28,11 @@ const news = ({ author, title, url, score, comments, baseurl }) => {
           <FaRegComments /> {comments}
         </div>
         <div>
-          <FaRegClock /> 4 hours ago
+          <FaRegClock />{" "}
+          {moment(
+            moment.unix(time).format("DD MM YYYY hh:mm:ss"),
+            "DD MM YYYY hh:mm:ss"
+          ).fromNow()}
         </div>
       </div>
     </div>
