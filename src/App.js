@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import News from "./components/News";
-import moment from "moment";
 
 function App() {
   const [stories, setStories] = useState([]);
