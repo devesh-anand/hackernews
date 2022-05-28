@@ -1,13 +1,25 @@
-import React from "react";
+import { React, useState } from "react";
 import { FaArrowUp, FaRegComments, FaRegClock } from "react-icons/fa";
-import moment from "moment";
+import { formatDistance } from "date-fns";
+import { toDate } from "date-fns/esm";
 
-const news = ({ author, title, url, score, comments, baseurl, time }) => {
+const News = ({ author, title, url, score, comments, baseurl, time }) => {
+  const [date, setDate] = useState(toDate(time * 1000));
+  // console.log(time * 1000);
+
   return (
     <div className="container-sm bg-light flex-row main-card p-3">
       <div className="content px-2 py-1 mx-1 d-flex flex-row no-wrap">
         <div className="col-sm-3 pe-4 extras">by {author}</div>
-        <div className="col-sm extras">({baseurl})</div>
+        <div className="col-sm extras">
+          <a
+            href={"http://" + baseurl}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            ({baseurl})
+          </a>
+        </div>
       </div>
 
       <a
@@ -28,15 +40,13 @@ const news = ({ author, title, url, score, comments, baseurl, time }) => {
           <FaRegComments /> {comments}
         </div>
         <div>
-          <FaRegClock />{" "}
-          {moment(
-            moment.unix(time).format("DD MM YYYY hh:mm:ss"),
-            "DD MM YYYY hh:mm:ss"
-          ).fromNow()}
+          <FaRegClock />
+          {"  "}
+          {formatDistance(toDate(time * 1000), new Date(), { addSuffix: true })}
         </div>
       </div>
     </div>
   );
 };
 
-export default news;
+export default News;

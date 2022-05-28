@@ -1,11 +1,12 @@
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+      <div className="container-fluid d-flex justify-content-center">
+        <h2 href="/">Hackernews</h2>
+        {/* <h1 className="navbar-brand" href="/">
           Hackernews
-        </a>
-        <button
+        </h1> */}
+        {/* <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -15,7 +16,7 @@ export default function Navbar() {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> */}
         <div
           className="collapse navbar-collapse flex-row-reverse"
           id="navbarNavDropdown"
@@ -56,7 +57,7 @@ export default function Navbar() {
                 Submit
               </a>
             </li>
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -87,7 +88,7 @@ export default function Navbar() {
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
