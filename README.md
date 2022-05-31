@@ -2,9 +2,11 @@
 
 - [x] Build frontend
 - [x] Add API, add title, url time etc.
-- [] Loading screen
+- [x] Loading screen
 - [x] Fix time
+- [] Top and New stories
+- [] Bookmark feature (using localstorage or maybe backend and well for multiple devices)
 - [] Load next 30 (or x) number of stories on click of button at the end
-- [] Make comment frontend and render comments
+- [] Make comments frontend and render comments
 - [] Add auth
 - [] Add option to bookmark stories

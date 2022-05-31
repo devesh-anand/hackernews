@@ -2,10 +2,13 @@ import { useEffect, useState, useLayoutEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import News from "./components/News";
+import Loading from "./components/Loading";
+import Topstories from "./components/Topstories";
 
 function App() {
   const [stories, setStories] = useState([]);
   const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(false);
   // const [idsfetched, setIdsfetched] = useState(0); 
 
   const retrieveStoryIds = async () => {
@@ -19,9 +22,12 @@ function App() {
   };
 
   useEffect(() => {
-    retrieveStoryIds();
-    console.log(new Date(1653736511*1000))
+    setTimeout(() => {
+      retrieveStoryIds();
+    // console.log(new Date(1653736511*1000))
     // setIdsfetched(true);
+    setLoading(true);
+    }, 2000)
   }, []);
 
 
@@ -40,29 +46,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div style={{ color: "white" }}>
-        {news &&
-          news.map((story) => (
-            <News
-              key={story.id + story.title}
-              author={story.by}
-              title={story.title}
-              url={
-                story.url === undefined
-                  ? `https://news.ycombinator.com/item?id=${story.id}`
-                  : story.url
-              }
-              baseurl={
-                story.url === undefined
-                  ? "news.ycombinator.com"
-                  : new URL(story.url).host
-              }
-              score={story.score != null ? story.score : 0}
-              comments={story.descendants != null ? story.descendants : 0}
-              time={story.time}
-            />
-          ))}
-      </div>
+
+      { !loading ? <Loading/>:<Topstories data={news}/>}
+      
     </div>
   );
 }
