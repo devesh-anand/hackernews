@@ -48,4 +48,12 @@ a {
   .main-heading {
     font-size: 20px;
   }
+
+  .author, .baseurl {
+    font-size: 0.8rem;
+  }
+
+  .score, .comments, .time {
+    font-size: 0.75rem;
+  }
 }

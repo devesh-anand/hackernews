@@ -1,7 +1,7 @@
 import React from "react";
 import News from "./News";
 
-function Topstories({ data }) {
+function Newsfeed({ data }) {
   return (
     <div style={{ color: "white" }}>
       {data &&
@@ -29,4 +29,4 @@ function Topstories({ data }) {
   );
 }
 
-export default Topstories;
+export default Newsfeed;
