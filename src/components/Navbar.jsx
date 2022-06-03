@@ -1,9 +1,10 @@
+import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid d-flex justify-content-center">
+      <div className="container-fluid">
         <h2>
           <Link className="text-dark" to="/">
             Hackernews
@@ -13,7 +14,7 @@ export default function Navbar() {
         {/* <h1 className="navbar-brand" href="/">
           Hackernews
         </h1> */}
-        {/* <button
+        <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -23,7 +24,7 @@ export default function Navbar() {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button> */}
+        </button>
         <div
           className="collapse navbar-collapse flex-row-reverse"
           id="navbarNavDropdown"

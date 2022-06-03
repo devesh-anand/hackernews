@@ -1,7 +1,6 @@
 import "./App.css";
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Navbar from "./components/Navbar";
-import Loading from "./components/Loading";
 import Homepage from "./components/Homepage";
 import Newstories from "./components/Newstories";
 

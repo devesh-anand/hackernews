@@ -1,7 +1,17 @@
 import { React, useState } from "react";
-import { FaArrowUp, FaRegComments, FaRegClock } from "react-icons/fa";
+import {
+  FaArrowUp,
+  FaRegComments,
+  FaRegClock,
+  FaRegBookmark,
+  FaBookmark,
+} from "react-icons/fa";
 import { formatDistance } from "date-fns";
 import { toDate } from "date-fns/esm";
+
+const bookmarkItem = () => {
+  console.log("hello");
+};
 
 const News = ({ author, title, url, score, comments, baseurl, time }) => {
   return (
@@ -18,6 +28,13 @@ const News = ({ author, title, url, score, comments, baseurl, time }) => {
             ({baseurl})
           </a>
         </div>
+        <button
+          className="ms-auto"
+          style={{ border: "none", background: "inherit" }}
+          // onClick={}
+        >
+          <FaRegBookmark />
+        </button>
       </div>
 
       <a
