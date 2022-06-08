@@ -9,11 +9,11 @@ import {
 import { formatDistance } from "date-fns";
 import { toDate } from "date-fns/esm";
 
-const bookmarkItem = () => {
-  console.log("hello");
-};
-
 const News = ({ author, title, url, score, comments, baseurl, time }) => {
+  const [bookmark, setBookmark] = useState(false);
+  const bookmarkItem = () => {
+    setBookmark(!bookmark);
+  };
   return (
     <div className="container-sm bg-light flex-row main-card p-3">
       <div className="content px-2 py-1 mx-1 d-flex flex-row no-wrap">
@@ -31,9 +31,9 @@ const News = ({ author, title, url, score, comments, baseurl, time }) => {
         <button
           className="ms-auto"
           style={{ border: "none", background: "inherit" }}
-          // onClick={}
+          onClick={bookmarkItem}
         >
-          <FaRegBookmark />
+          {bookmark ? <FaBookmark /> : <FaRegBookmark />}
         </button>
       </div>
 

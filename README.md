@@ -6,8 +6,8 @@
 - [x] Fix time
 - [x] Top and New stories (newstories added at route /newstories)
 - [] Add a 404 page
+- [] Add pagination
 - [] Bookmark feature (using localstorage or maybe backend as well for multiple devices)
-- [] Load next 30 (or x) number of stories on click of button at the end
 - [] Make comments frontend and render comments
 - [] Add auth
 - [] Add option to bookmark stories

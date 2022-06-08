@@ -44,6 +44,15 @@ a {
   transition: ease-in-out 250ms;
 }
 
+.page-link {
+  color:#6d6d6d;
+}
+
+.page-item.active .page-link {
+  border-color: #6d6d6d;
+  background-color: #6d6d6d;
+}
+
 @media (max-width: 600px) {
   .main-heading {
     font-size: 20px;
