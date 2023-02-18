@@ -1,6 +1,6 @@
 import React from "react";
 
-function Pagination({ totalPages, currPage, pageIncrement, pageDecrement }) {
+function Pagination({ currPage, pageIncrement, pageDecrement }) {
   // const pages = [...Array(totalPages).keys()].map((num) => num + 1);
 
   return (

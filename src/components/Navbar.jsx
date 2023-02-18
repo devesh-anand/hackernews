@@ -40,6 +40,11 @@ export default function Navbar() {
                 New-Stories
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/bookmarks" className="nav-link">
+                Bookmarks
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import "./App.css";
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Homepage from "./components/Homepage";
 import Newstories from "./components/Newstories";
-import Pagination from "./components/Pagination";
+import Bookmarks from "./components/Bookmarks";
 
 function App() {
   return (
@@ -11,8 +11,9 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Homepage/>} />
-          <Route path="/newstories" element={<Newstories/>} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/newstories" element={<Newstories />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
         </Routes>
         {/* <Pagination /> */}
       </Router>

@@ -2,6 +2,7 @@ import React from "react";
 import News from "./News";
 
 function Newsfeed({ data }) {
+  console.log(data);
   return (
     <div style={{ color: "white" }}>
       {data &&
