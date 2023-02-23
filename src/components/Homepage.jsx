@@ -1,4 +1,4 @@
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import "./../App.css";
 import axios from "axios";
 import Loading from "./Loading";
@@ -34,7 +34,7 @@ function Homepage() {
   async function setCurrentPageData() {
     console.log("current page", currentPage);
 
-    fetchNews((currentPage - 1) * 15, currentPage * 15);
+    fetchNews((currentPage - 1) * 10, currentPage * 10);
   }
 
   async function fetchNews(start, end) {

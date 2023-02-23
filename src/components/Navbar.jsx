@@ -1,7 +1,10 @@
 import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import authContext from "./auth/authContext.jsx";
 
 export default function Navbar() {
+  const { auth } = useContext(authContext);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -44,6 +47,16 @@ export default function Navbar() {
               <NavLink to="/bookmarks" className="nav-link">
                 Bookmarks
               </NavLink>
+            </li>
+            <li className="nav-item">
+              <p
+                style={{
+                  color: auth ? "green" : "red",
+                  fontSize: "32px",
+                }}
+              >
+                {auth ? "in" : "out"}
+              </p>
             </li>
           </ul>
         </div>

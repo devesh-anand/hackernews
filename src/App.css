@@ -1,9 +1,9 @@
+@import "/node_modules/bootstrap/dist/css/bootstrap";
 :root {
   --body-bg: rgb(27, 27, 27);
   --bg-secondary: #e3e2e2;
 }
 
-@import "/node_modules/bootstrap/dist/css/bootstrap";
 /* @import "bootstrap-icons/font/bootstrap-icons.css"; */
 
 body {
@@ -45,7 +45,7 @@ a {
 }
 
 .page-link {
-  color:#6d6d6d;
+  color: #6d6d6d;
 }
 
 .page-item.active .page-link {
@@ -58,11 +58,14 @@ a {
     font-size: 20px;
   }
 
-  .author, .baseurl {
+  .author,
+  .baseurl {
     font-size: 0.8rem;
   }
 
-  .score, .comments, .time {
+  .score,
+  .comments,
+  .time {
     font-size: 0.75rem;
   }
 }

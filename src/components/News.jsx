@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import {
   FaArrowUp,
   FaRegComments,
@@ -8,11 +8,29 @@ import {
 } from "react-icons/fa";
 import { formatDistance } from "date-fns";
 import { toDate } from "date-fns/esm";
+import authContext from "./auth/authContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const News = ({ author, title, url, score, comments, baseurl, time }) => {
+  const { auth } = useContext(authContext);
+
+  const notify = (message) => {
+    if (message) {
+      toast.success("Added!");
+    } else {
+      toast.error("login first");
+    }
+  };
+
   const [bookmark, setBookmark] = useState(false);
   const bookmarkItem = () => {
-    setBookmark(!bookmark);
+    if (auth) {
+      setBookmark(!bookmark);
+      if (!bookmark) notify(true);
+    } else {
+      notify(false);
+    }
   };
   return (
     <div className="container-sm bg-light flex-row main-card p-3">

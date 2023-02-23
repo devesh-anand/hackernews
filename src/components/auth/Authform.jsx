@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import authContext from "./authContext";
 
 export default function Authform() {
+  const { auth, setAuth } = useContext(authContext);
   let creds = {
     apiKey: "AIzaSyBJ2LWvLlx_YSRuuwDGERyGwKRe5KVlPV8",
     authDomain: "hackernews-b586a.firebaseapp.com",
@@ -25,6 +27,8 @@ export default function Authform() {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Handle successful login
+        setAuth(true);
+        console.log(auth);
         console.log("successful login", userCredential);
       })
       .catch((error) => {
