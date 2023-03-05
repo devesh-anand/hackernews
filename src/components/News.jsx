@@ -12,9 +12,22 @@ import authContext from "./auth/authContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const News = ({ author, title, url, score, comments, baseurl, time }) => {
+import firebaseInit from "./firebase/firestore";
+
+const News = ({
+  author,
+  title,
+  url,
+  score,
+  comments,
+  baseurl,
+  time,
+  id,
+  bookmarked,
+}) => {
   const { auth } = useContext(authContext);
 
+  const db = firebaseInit.firestore();
   const notify = (message) => {
     if (message) {
       toast.success("Added!");
@@ -27,6 +40,34 @@ const News = ({ author, title, url, score, comments, baseurl, time }) => {
   const bookmarkItem = () => {
     if (auth) {
       setBookmark(!bookmark);
+
+      let currentUser = firebaseInit.auth().currentUser;
+
+      db.collection("bookmarks")
+        .where("uid", "==", currentUser.uid)
+        .where("storyId", "==", id)
+        .get()
+        .then((snapshot) => {
+          if (snapshot.empty) {
+            db.collection("bookmarks")
+              .add({
+                uid: currentUser.uid,
+                storyId: id,
+              })
+              .then(() => {
+                console.log("Document successfully written!");
+              })
+              .catch((error) => {
+                console.error("Error writing document: ", error);
+              });
+          } else {
+            console.log("already exists");
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
       if (!bookmark) notify(true);
     } else {
       notify(false);
@@ -51,7 +92,7 @@ const News = ({ author, title, url, score, comments, baseurl, time }) => {
           style={{ border: "none", background: "inherit" }}
           onClick={bookmarkItem}
         >
-          {bookmark ? <FaBookmark /> : <FaRegBookmark />}
+          {bookmark || bookmarked ? <FaBookmark /> : <FaRegBookmark />}
         </button>
       </div>
 

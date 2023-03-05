@@ -1,20 +1,10 @@
 import { useState, useContext } from "react";
-import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import authContext from "./authContext";
+import firebaseInit from "./../firebase/firestore";
 
 export default function Authform() {
   const { auth, setAuth } = useContext(authContext);
-  let creds = {
-    apiKey: "AIzaSyBJ2LWvLlx_YSRuuwDGERyGwKRe5KVlPV8",
-    authDomain: "hackernews-b586a.firebaseapp.com",
-    projectId: "hackernews-b586a",
-    storageBucket: "hackernews-b586a.appspot.com",
-    messagingSenderId: "483942638125",
-    appId: "1:483942638125:web:2d961f165e983d2cc9cea4",
-    measurementId: "G-VZ7YC5Q4FW",
-  };
-  firebase.initializeApp(creds);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +12,7 @@ export default function Authform() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    firebase
+    firebaseInit
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
@@ -38,14 +28,17 @@ export default function Authform() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ padding: "0 0 32px 0" }}>
+      <h5>Login</h5>
       <input
         type="email"
+        placeholder="email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
       />
       <input
         type="password"
+        placeholder="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />

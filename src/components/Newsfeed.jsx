@@ -1,7 +1,7 @@
 import React from "react";
 import News from "./News";
 
-function Newsfeed({ data }) {
+function Newsfeed({ data, bookmarked }) {
   console.log(data);
   return (
     <div style={{ color: "white" }}>
@@ -9,6 +9,7 @@ function Newsfeed({ data }) {
         data.map((story) => (
           <News
             key={story.id}
+            id={story.id}
             author={story.by}
             title={story.title}
             url={
@@ -24,6 +25,7 @@ function Newsfeed({ data }) {
             score={story.score != null ? story.score : 0}
             comments={story.descendants != null ? story.descendants : 0}
             time={story.time}
+            bookmarked={bookmarked}
           />
         ))}
     </div>

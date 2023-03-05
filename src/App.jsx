@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
 import Homepage from "./components/Homepage";
 import Newstories from "./components/Newstories";
-import Bookmarks from "./components/Bookmarks";
+import Bookmarks from "./components/Bookmark/Bookmarks";
 
 function App() {
   const [auth, setAuth] = useState(false);

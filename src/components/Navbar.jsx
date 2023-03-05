@@ -2,6 +2,8 @@ import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import authContext from "./auth/authContext.jsx";
+import Login from "./Login.jsx";
+import AuthModal from "./auth/AuthModal.jsx";
 
 export default function Navbar() {
   const { auth } = useContext(authContext);
@@ -43,11 +45,16 @@ export default function Navbar() {
                 New-Stories
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/bookmarks" className="nav-link">
-                Bookmarks
-              </NavLink>
-            </li>
+            {auth ? (
+              <li className="nav-item">
+                <NavLink to="/bookmarks" className="nav-link">
+                  Bookmarks
+                </NavLink>
+              </li>
+            ) : (
+              // <Login />
+              <AuthModal />
+            )}
             <li className="nav-item">
               <p
                 style={{
