@@ -29,10 +29,10 @@ const News = ({
 
   const db = firebaseInit.firestore();
   const notify = (message) => {
-    if (message) {
+    if (message == true) {
       toast.success("Added!");
     } else {
-      toast.error("login first");
+      toast.error(message);
     }
   };
 
@@ -56,21 +56,26 @@ const News = ({
               })
               .then(() => {
                 console.log("Document successfully written!");
+                notify(true);
               })
               .catch((error) => {
                 console.error("Error writing document: ", error);
               });
           } else {
             console.log("already exists");
+            snapshot.forEach((snap) => {
+              snap.ref.delete();
+            });
+            notify("already exists");
           }
         })
         .catch((e) => {
           console.log(e);
         });
 
-      if (!bookmark) notify(true);
+      // if (!bookmark) notify(true);
     } else {
-      notify(false);
+      notify("login first");
     }
   };
   return (

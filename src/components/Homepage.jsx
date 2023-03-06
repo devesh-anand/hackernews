@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./../App.css";
 import axios from "axios";
 import Loading from "./Loading";
 import Newsfeed from "./Newsfeed";
 import Pagination from "./Pagination";
+import authContext from "./auth/authContext";
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 //The topstories and newstories will have different components (due to routing)
 function Homepage() {
@@ -62,7 +65,14 @@ function Homepage() {
     window.scrollTo(0, 0);
   }, [currentPage, allIds]);
 
+  const { auth, setAuth } = useContext(authContext);
   useEffect(() => {
+    onAuthStateChanged(getAuth(), (user) => {
+      if (user) {
+        setAuth(true);
+        console.log("user login persists");
+      }
+    });
     retrieveStoryIds();
   }, []);
 
