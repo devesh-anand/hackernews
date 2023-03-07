@@ -23,7 +23,7 @@ const Signupform = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ padding: "0 0 32px 0" }}>
       <h5>Sign up</h5>
       <input
         type="email"

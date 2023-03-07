@@ -2,11 +2,20 @@ import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import authContext from "./auth/authContext.jsx";
-import Login from "./Login.jsx";
 import AuthModal from "./auth/AuthModal.jsx";
+import firebase from "firebase/compat";
 
 export default function Navbar() {
-  const { auth } = useContext(authContext);
+  const { auth, setAuth } = useContext(authContext);
+  const logout = () => {
+    try {
+      let info = firebase.auth().signOut();
+      console.log(info);
+    } catch (e) {
+      console.log(e);
+    }
+    setAuth(false);
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -56,13 +65,47 @@ export default function Navbar() {
               <AuthModal />
             )}
             <li className="nav-item">
+              {auth ? (
+                <button
+                  style={{ position: "relative", top: "4px" }}
+                  onClick={logout}
+                >
+                  Log out
+                </button>
+              ) : (
+                <></>
+              )}
+            </li>
+            <li className="nav-item">
               <p
                 style={{
                   color: auth ? "green" : "red",
                   fontSize: "32px",
                 }}
               >
-                {auth ? "in" : "out"}
+                {auth ? (
+                  <div
+                    style={{
+                      color: "green",
+                      position: "relative",
+                      bottom: "8px",
+                      padding: "0 4px",
+                    }}
+                  >
+                    •
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      color: "red",
+                      position: "relative",
+                      bottom: "8px",
+                      padding: "0 4px",
+                    }}
+                  >
+                    •
+                  </div>
+                )}
               </p>
             </li>
           </ul>

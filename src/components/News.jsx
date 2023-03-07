@@ -11,6 +11,7 @@ import { toDate } from "date-fns/esm";
 import authContext from "./auth/authContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DeleteModal from "./Bookmark/DeleteModal";
 
 import firebaseInit from "./firebase/firestore";
 
@@ -28,20 +29,20 @@ const News = ({
   const { auth } = useContext(authContext);
 
   const db = firebaseInit.firestore();
-  const notify = (message) => {
-    if (message == true) {
-      toast.success("Added!");
+  const notify = (message, type) => {
+    if (type) {
+      toast.success(message);
     } else {
       toast.error(message);
     }
   };
 
   const [bookmark, setBookmark] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const currentUser = firebaseInit.auth().currentUser;
   const bookmarkItem = () => {
     if (auth) {
       setBookmark(!bookmark);
-
-      let currentUser = firebaseInit.auth().currentUser;
 
       db.collection("bookmarks")
         .where("uid", "==", currentUser.uid)
@@ -53,20 +54,20 @@ const News = ({
               .add({
                 uid: currentUser.uid,
                 storyId: id,
+                date: new Date().toISOString(),
               })
               .then(() => {
                 console.log("Document successfully written!");
-                notify(true);
+                notify("Added!", true);
               })
               .catch((error) => {
                 console.error("Error writing document: ", error);
               });
           } else {
+            //modal opens
+            setDeleteModalOpen(true);
             console.log("already exists");
-            snapshot.forEach((snap) => {
-              snap.ref.delete();
-            });
-            notify("already exists");
+            //deletion logic in modal
           }
         })
         .catch((e) => {
@@ -75,7 +76,7 @@ const News = ({
 
       // if (!bookmark) notify(true);
     } else {
-      notify("login first");
+      notify("login first", false);
     }
   };
   return (
@@ -92,10 +93,19 @@ const News = ({
             ({baseurl})
           </a>
         </div>
+
+        <DeleteModal
+          modalIsOpen={deleteModalOpen}
+          setModal={setDeleteModalOpen}
+          uid={currentUser?.uid}
+          id={id}
+        />
         <button
           className="ms-auto"
           style={{ border: "none", background: "inherit" }}
-          onClick={bookmarkItem}
+          onClick={() => {
+            bookmarkItem();
+          }}
         >
           {bookmark || bookmarked ? <FaBookmark /> : <FaRegBookmark />}
         </button>

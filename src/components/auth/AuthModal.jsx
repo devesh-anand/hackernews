@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 
 import Authform from "./Authform";
 import Signupform from "./Signupform";
 
 const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0,0,0,0.8)",
+  },
   content: {
     top: "50%",
     left: "50%",
@@ -20,7 +23,6 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const AuthModal = () => {
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -36,9 +38,12 @@ const AuthModal = () => {
     setIsOpen(false);
   }
 
+  let [signUpOrin, setSignUpOrIn] = useState(0);
   return (
     <div>
-      <button onClick={openModal}>Login/Signup</button>
+      <button style={{ position: "relative", top: "4px" }} onClick={openModal}>
+        Login/Signup
+      </button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -46,9 +51,14 @@ const AuthModal = () => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <Authform />
-
-        <Signupform />
+        {signUpOrin ? <Signupform /> : <Authform />}
+        <button
+          onClick={() => {
+            setSignUpOrIn(!signUpOrin);
+          }}
+        >
+          {signUpOrin ? "Log in" : "Sign up"}
+        </button>
       </Modal>
     </div>
   );

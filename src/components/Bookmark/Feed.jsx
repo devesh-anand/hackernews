@@ -15,7 +15,7 @@ function Feed({ stories }) {
       const response = await axios.get(
         `https://hacker-news.firebaseio.com/v0/item/${storyId}.json`
       );
-      console.log(response.data);
+      // console.log(response.data);
       setNews((news) => [...news, response.data]);
     });
   }, [stories]);
