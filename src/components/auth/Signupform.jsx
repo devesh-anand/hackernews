@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "firebase/compat/auth";
 import firebaseInit from "./../firebase/firestore";
 
-const Signupform = () => {
+const Signupform = ({ setModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const signInEmailPassword = (event) => {
     event.preventDefault();
 
     firebaseInit
@@ -14,7 +14,19 @@ const Signupform = () => {
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Handle successful login
-        console.log("successful login", userCredential);
+        //login the user immediately
+        firebaseInit
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then((creds) => {
+            // console.log(creds);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+
+        //close modal
+        setModal(false);
       })
       .catch((error) => {
         // Handle login error
@@ -23,7 +35,7 @@ const Signupform = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: "0 0 32px 0" }}>
+    <form onSubmit={signInEmailPassword} style={{ padding: "0 0 32px 0" }}>
       <h5>Sign up</h5>
       <input
         type="email"

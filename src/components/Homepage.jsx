@@ -35,7 +35,7 @@ function Homepage() {
   };
 
   async function setCurrentPageData() {
-    console.log("current page", currentPage);
+    // console.log("current page", currentPage);
 
     fetchNews((currentPage - 1) * 10, currentPage * 10);
   }
@@ -70,7 +70,7 @@ function Homepage() {
     onAuthStateChanged(getAuth(), (user) => {
       if (user) {
         setAuth(true);
-        console.log("user login persists");
+        // console.log("user login persists");
       }
     });
     retrieveStoryIds();

@@ -2,7 +2,7 @@ import React from "react";
 import News from "./News";
 
 function Newsfeed({ data, bookmarked }) {
-  console.log(data);
+  // console.log(data);
   return (
     <div style={{ color: "white" }}>
       {data &&

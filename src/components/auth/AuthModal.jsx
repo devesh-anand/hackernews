@@ -51,7 +51,7 @@ const AuthModal = () => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        {signUpOrin ? <Signupform /> : <Authform />}
+        {signUpOrin ? <Signupform setModal={setIsOpen} /> : <Authform />}
         <button
           onClick={() => {
             setSignUpOrIn(!signUpOrin);

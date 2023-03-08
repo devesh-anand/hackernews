@@ -13,9 +13,9 @@ function Bookmarks() {
 
   const { bookmarksUpdatedOrNot, setBookmarksUpdated } =
     useContext(bookmarksUpdated);
-  console.log(bookmarksUpdatedOrNot);
+  // console.log(bookmarksUpdatedOrNot);
   const getBookmarks = () => {
-    console.log("getBookmarks called", currentUser.uid, storyIds);
+    // console.log("getBookmarks called", currentUser.uid, storyIds);
     let temp = [];
     db.collection("bookmarks")
       .where("uid", "==", currentUser.uid)
@@ -24,12 +24,12 @@ function Bookmarks() {
       .then((doc) => {
         doc.forEach((i) => {
           let data = i.data();
-          console.log(data);
+          // console.log(data);
           temp.push(data.storyId);
           // setStoryIds((prev) => [...prev, i.data().storyId]);
         });
         setStoryIds(temp);
-        console.log(storyIds);
+        // console.log(storyIds);
         temp = [];
       })
       .catch((e) => {
@@ -41,7 +41,7 @@ function Bookmarks() {
     onAuthStateChanged(getAuth(), (user) => {
       if (user) {
         setAuth(true);
-        console.log("user login persists");
+        // console.log("user login persists");
       }
     });
   }, []);
@@ -49,13 +49,17 @@ function Bookmarks() {
   useEffect(() => {
     if (auth) {
       getBookmarks();
-      console.log("rerendered");
+      // console.log("rerendered");
     }
   }, [auth, bookmarksUpdatedOrNot]);
   return (
     <div>
       {auth ? (
-        <Feed stories={storyIds} />
+        storyIds.length ? (
+          <Feed stories={storyIds} />
+        ) : (
+          <p style={{ color: "white" }}>No bookmarks yet</p>
+        )
       ) : (
         <div style={{ color: "white" }}>Login First</div>
       )}

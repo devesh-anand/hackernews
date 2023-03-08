@@ -57,7 +57,7 @@ const News = ({
                 date: new Date().toISOString(),
               })
               .then(() => {
-                console.log("Document successfully written!");
+                // console.log("Document successfully written!");
                 notify("Added!", true);
               })
               .catch((error) => {
@@ -66,7 +66,7 @@ const News = ({
           } else {
             //modal opens
             setDeleteModalOpen(true);
-            console.log("already exists");
+            // console.log("already exists");
             //deletion logic in modal
           }
         })

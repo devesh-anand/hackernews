@@ -10,7 +10,7 @@ export default function Navbar() {
   const logout = () => {
     try {
       let info = firebase.auth().signOut();
-      console.log(info);
+      // console.log(info);
     } catch (e) {
       console.log(e);
     }
@@ -49,11 +49,11 @@ export default function Navbar() {
                 Top-Stories
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink to="/newstories" className="nav-link">
                 New-Stories
               </NavLink>
-            </li>
+            </li> */}
             {auth ? (
               <li className="nav-item">
                 <NavLink to="/bookmarks" className="nav-link">
